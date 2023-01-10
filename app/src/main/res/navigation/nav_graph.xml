@@ -18,5 +18,9 @@
         android:id="@+id/noteFragment"
         android:name="com.example.notesapp.ui.NoteFragment"
         android:label="fragment_note"
-        tools:layout="@layout/fragment_note" />
+        tools:layout="@layout/fragment_note" >
+        <argument
+            android:name="note"
+            app:argType="com.example.notesapp.data.Note" />
+    </fragment>
 </navigation>

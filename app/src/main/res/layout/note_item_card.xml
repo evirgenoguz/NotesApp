@@ -27,12 +27,12 @@
             android:text="Title"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/NoteBody"
+            app:layout_constraintBottom_toTopOf="@id/tvNoteBody"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/NoteBody"
+            android:id="@+id/tvNoteBody"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"

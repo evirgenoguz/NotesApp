@@ -14,7 +14,7 @@ interface NoteDao {
 
     //Insertin onConflict Methodunu Replace yaparsak aslinda update te etmis oluyoruz
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNote(note: Note)
+    suspend fun upsertNote(note: Note)
 
     @Delete
     suspend fun deleteNote(note: Note)
