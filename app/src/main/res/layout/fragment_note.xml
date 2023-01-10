@@ -6,12 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".ui.NoteFragment">
 
-    <TextView
+
+    <EditText
+        android:id="@+id/etTitle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:hint="Title"
+        android:paddingStart="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/imgDeleteNote"
+        android:lines="1"
+        android:singleLine="true" />
+
+    <ImageView
+        android:id="@+id/imgDeleteNote"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/etTitle"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        app:tint="#FF3131"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/etNote"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:gravity="top"
+        android:hint="Note"
+        android:paddingStart="10dp"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etTitle"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="RtlCompat" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnSaveNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Note Fragment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/ic_save"
+        app:tint="@color/white"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -71,7 +71,7 @@ class NotesListFragment : Fragment() {
                 putParcelable("note", note)
             }
 
-            findNavController().navigate(R.id.action_notesListFragment_to_noteFragment)
+            findNavController().navigate(R.id.action_notesListFragment_to_noteFragment, bundle)
         }
 
     }

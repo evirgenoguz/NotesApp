@@ -41,7 +41,7 @@ class NotesListAdapter: RecyclerView.Adapter<NotesListAdapter.NoteListViewHolder
         holder.bind(note)
 
         holder.itemView.setOnClickListener {
-
+            onClick?.invoke(note)
         }
     }
 
