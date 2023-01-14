@@ -53,10 +53,15 @@ class NoteFragment : Fragment() {
                 val id = args.note?.noteId ?: 0
                 val noteTitle = etTitle.text.toString()
                 val noteText = etNote.text.toString()
+                var noteLabel: String = "default"
+                etNoteLabel.text.toString()?.let {
+                    noteLabel = it
+                }
 
-                Note(id, noteTitle, noteText).also { note ->
-                    if (noteTitle.isEmpty() && noteText.isEmpty()){
-                        Toast.makeText(context, "All field must be filled", Toast.LENGTH_SHORT).show()
+                Note(id, noteTitle, noteText, noteLabel).also { note ->
+                    if (noteTitle.isEmpty() && noteText.isEmpty()) {
+                        Toast.makeText(context, "All field must be filled", Toast.LENGTH_SHORT)
+                            .show()
                         return@setOnClickListener
                     }
                     viewModel.upsertNote(note)
@@ -76,6 +81,17 @@ class NoteFragment : Fragment() {
                 }
             }
         }
+
+        binding.apply {
+            imgAddLabel.setOnClickListener {
+                if (etNoteLabel.visibility == View.VISIBLE) {
+                    etNoteLabel.visibility = View.INVISIBLE
+                } else {
+                    etNoteLabel.visibility = View.VISIBLE
+                }
+            }
+        }
+
     }
 
     override fun onDestroyView() {
