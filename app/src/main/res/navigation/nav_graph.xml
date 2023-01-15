@@ -25,4 +25,9 @@
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
+    <fragment
+        android:id="@+id/labeledNotesFragment"
+        android:name="com.example.notesapp.ui.LabeledNotesFragment"
+        android:label="fragment_labeled_notes"
+        tools:layout="@layout/fragment_labeled_notes" />
 </navigation>
