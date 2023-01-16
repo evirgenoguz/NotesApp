@@ -19,4 +19,6 @@ class NoteRepository(
 
     suspend fun deleteAllNotes() = notesDao.deleteAllNotes()
 
+    fun getNotesLabel() = notesDao.getNotesLabels()
+
 }

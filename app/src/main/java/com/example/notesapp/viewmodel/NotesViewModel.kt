@@ -16,6 +16,7 @@ class NotesViewModel(
     private val _searchNotes = MutableStateFlow<List<Note>>(emptyList())
     val searchNotes: StateFlow<List<Note>> = _searchNotes
     val notes = notesRepository.getAllNotes()
+    val notesLabels = notesRepository.getNotesLabel()
 
     fun upsertNote(note: Note) = viewModelScope.launch {
         notesRepository.upsertNote(note)
@@ -34,5 +35,6 @@ class NotesViewModel(
             _searchNotes.emit(notesList)
         }
     }
+
 
 }

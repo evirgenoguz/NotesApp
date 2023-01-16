@@ -44,8 +44,11 @@ class NoteFragment : Fragment() {
             binding.apply {
                 etTitle.setText(it.noteTitle)
                 etNote.setText(it.noteBody)
+                etNoteLabel.visibility = View.VISIBLE
+                etNoteLabel.setText(it.noteLabel)
             }
             binding.imgDeleteNote.visibility = View.VISIBLE
+
         }
 
         binding.apply {
@@ -53,9 +56,9 @@ class NoteFragment : Fragment() {
                 val id = args.note?.noteId ?: 0
                 val noteTitle = etTitle.text.toString()
                 val noteText = etNote.text.toString()
-                var noteLabel: String = "default"
-                etNoteLabel.text.toString()?.let {
-                    noteLabel = it
+                var noteLabel: String? = null
+                if (etNoteLabel.text.isNotEmpty()){
+                    noteLabel = etNoteLabel.text.toString()
                 }
 
                 Note(id, noteTitle, noteText, noteLabel).also { note ->

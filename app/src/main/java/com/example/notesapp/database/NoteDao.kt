@@ -28,4 +28,7 @@ interface NoteDao {
     @Query("DELETE FROM notes")
     suspend fun deleteAllNotes()
 
+    @Query("SELECT noteLabel FROM notes WHERE noteLabel IS NOT NULL")
+    fun getNotesLabels(): Flow<List<String>>
+
 }
