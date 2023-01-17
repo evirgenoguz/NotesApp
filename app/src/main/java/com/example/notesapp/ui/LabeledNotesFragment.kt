@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notesapp.R
 import com.example.notesapp.adapters.LabeledNotesAdapter
@@ -52,6 +53,19 @@ class LabeledNotesFragment : Fragment() {
             }
         }
 
+        clickedFabAddNote()
+
+
+
+
+    }
+
+
+
+    private fun clickedFabAddNote() {
+        binding.fabAddNote.setOnClickListener {
+            findNavController().navigate(R.id.action_labeledNotesFragment_to_noteFragment)
+        }
     }
 
     private fun setupRecyclerView() {
