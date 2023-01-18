@@ -1,11 +1,16 @@
 package com.example.notesapp.adapters
 
+import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.notesapp.R
 import com.example.notesapp.data.Note
 import com.example.notesapp.databinding.LabeledNotesItemCardBinding
 
@@ -40,16 +45,24 @@ class LabeledNotesAdapter: RecyclerView.Adapter<LabeledNotesAdapter.LabeledNotes
         val label = differ.currentList[position]
         holder.bind(label)
 
-        holder.itemView.rootView.setOnClickListener {
-            //Todo()
-            //Burdan action ile tvnoteslabeldaki labeli alip notesListFragmenta gondericem
-            //Burdan alinan labeli search ile araticam ya da direkt ordan tiklayarak gittigimde
-            //Bu labella ilgili seyler gelicek
-            // yada search kismini label:deneme seklinde aratip boyle bir tag varsa
-            //viewmodeldan data katmanina kadar bunu bu sekilde aratabilirim
-            // su an hazir olan methoda ekleme yaparak
-            Log.d("selam", holder.binding.tvNotesLabel.text.toString())
+        //Todo()
+        //Burdan action ile tvnoteslabeldaki labeli alip notesListFragmenta gondericem
+        //Burdan alinan labeli search ile araticam ya da direkt ordan tiklayarak gittigimde
+        //Bu labella ilgili seyler gelicek
+        // yada search kismini label:deneme seklinde aratip boyle bir tag varsa
+        //viewmodeldan data katmanina kadar bunu bu sekilde aratabilirim
+        // su an hazir olan methoda ekleme yaparak
+
+        holder.itemView.setOnClickListener{ view ->
+            val bundle = Bundle().apply {
+                putString("label", label)
+            }
+            view.findNavController().navigate(R.id.action_labeledNotesFragment_to_notesListFragment, bundle)
+            Log.d("selam", label)
         }
+
+
+
     }
 
     override fun getItemCount(): Int {

@@ -1,6 +1,7 @@
 package com.example.notesapp.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
@@ -21,10 +23,11 @@ import kotlinx.coroutines.flow.collect
 
 class NotesListFragment : Fragment() {
 
-    private var _binding : FragmentNotesListBinding? = null
+    private var _binding: FragmentNotesListBinding? = null
     private val binding get() = _binding!!
     private lateinit var notesListadapter: NotesListAdapter
     private lateinit var viewModel: NotesViewModel
+    val args by navArgs<NotesListFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,9 +73,11 @@ class NotesListFragment : Fragment() {
             val bundle = Bundle().apply {
                 putParcelable("note", note)
             }
-
             findNavController().navigate(R.id.action_notesListFragment_to_noteFragment, bundle)
         }
+
+//        Log.d("selam", args.label)
+
 
     }
 
