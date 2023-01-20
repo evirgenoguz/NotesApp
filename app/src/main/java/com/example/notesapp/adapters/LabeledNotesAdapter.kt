@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.R
 import com.example.notesapp.data.Note
 import com.example.notesapp.databinding.LabeledNotesItemCardBinding
+import com.example.notesapp.ui.LabeledNotesFragment
+import com.example.notesapp.ui.LabeledNotesFragmentDirections
 
 class LabeledNotesAdapter: RecyclerView.Adapter<LabeledNotesAdapter.LabeledNotesViewHolder>() {
 
@@ -53,22 +55,19 @@ class LabeledNotesAdapter: RecyclerView.Adapter<LabeledNotesAdapter.LabeledNotes
         //viewmodeldan data katmanina kadar bunu bu sekilde aratabilirim
         // su an hazir olan methoda ekleme yaparak
 
-        holder.itemView.setOnClickListener{ view ->
-            val bundle = Bundle().apply {
-                putString("label", label)
-            }
-            view.findNavController().navigate(R.id.action_labeledNotesFragment_to_notesListFragment, bundle)
-            Log.d("selam", label)
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(label)
         }
 
 
 
     }
 
+
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
 
-
+    var onClick: ((String) -> Unit)? = null
 
 }

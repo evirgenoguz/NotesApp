@@ -55,7 +55,12 @@ class LabeledNotesFragment : Fragment() {
 
         clickedFabAddNote()
 
-
+        labeledNotesAdapter.onClick = { label ->
+            val bundle = Bundle().apply {
+                putString("label", label)
+            }
+            findNavController().navigate(R.id.action_labeledNotesFragment_to_notesListFragment, bundle)
+        }
 
 
     }

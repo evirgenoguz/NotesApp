@@ -27,7 +27,7 @@ class NotesListFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var notesListadapter: NotesListAdapter
     private lateinit var viewModel: NotesViewModel
-    val args by navArgs<NotesListFragmentArgs>()
+    private val args by navArgs<NotesListFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +76,8 @@ class NotesListFragment : Fragment() {
             findNavController().navigate(R.id.action_notesListFragment_to_noteFragment, bundle)
         }
 
-//        Log.d("selam", args.label)
+        //burada hata var
+        Log.d("selam2", args.label)
 
 
     }
