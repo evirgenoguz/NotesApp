@@ -1,11 +1,11 @@
-package com.example.notesapp.adapters
+package com.example.notesapp.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.notesapp.data.Note
+import com.example.notesapp.data.model.Note
 import com.example.notesapp.databinding.NoteItemCardBinding
 
 class NotesListAdapter: RecyclerView.Adapter<NotesListAdapter.NoteListViewHolder>() {

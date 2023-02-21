@@ -11,23 +11,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.Adapter
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.notesapp.R
-import com.example.notesapp.adapters.NotesListAdapter
-import com.example.notesapp.data.Note
+import com.example.notesapp.ui.adapters.NotesListAdapter
 import com.example.notesapp.databinding.FragmentNotesListBinding
 import com.example.notesapp.viewmodel.NotesViewModel
-import kotlinx.coroutines.flow.collect
 
 
 class NotesListFragment : Fragment() {
 
     private var _binding: FragmentNotesListBinding? = null
     private val binding get() = _binding!!
-    private lateinit var notesListadapter: NotesListAdapter
+    private lateinit var notesListAdapter: NotesListAdapter
     private lateinit var viewModel: NotesViewModel
-    private val args by navArgs<NotesListFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,15 +44,16 @@ class NotesListFragment : Fragment() {
 
         setupRecyclerView()
 
+
         lifecycleScope.launchWhenStarted {
             viewModel.notes.collect { notesList ->
-                notesListadapter.differ.submitList(notesList)
+                notesListAdapter.differ.submitList(notesList)
             }
         }
 
         lifecycleScope.launchWhenStarted {
             viewModel.searchNotes.collect { searchedNotes ->
-                notesListadapter.differ.submitList(searchedNotes)
+                notesListAdapter.differ.submitList(searchedNotes)
             }
         }
 
@@ -69,26 +65,41 @@ class NotesListFragment : Fragment() {
             findNavController().navigate(R.id.action_notesListFragment_to_noteFragment)
         }
 
-        notesListadapter.onClick = { note ->
+        notesListAdapter.onClick = { note ->
             val bundle = Bundle().apply {
                 putParcelable("note", note)
             }
             findNavController().navigate(R.id.action_notesListFragment_to_noteFragment, bundle)
         }
 
-        //burada hata var
-        Log.d("selam2", args.label)
+
+        viewModel.label?.let {
+            Log.d("selam2", it)
+            viewModel.getSpecificLabeledNotes(it)
+            lifecycleScope.launchWhenStarted {
+                viewModel.specificLabeledNotes.collect { specificLabeledNotes ->
+                    notesListAdapter.differ.submitList(specificLabeledNotes)
+                }
+            }
+            viewModel.label = null
+        }
+
+
+
+
 
 
     }
 
     private fun setupRecyclerView() {
-        notesListadapter = NotesListAdapter()
+        notesListAdapter = NotesListAdapter()
         binding.rvNotes.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = notesListadapter
+            adapter = notesListAdapter
         }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

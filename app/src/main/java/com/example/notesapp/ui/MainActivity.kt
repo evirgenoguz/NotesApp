@@ -7,9 +7,9 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.example.notesapp.R
-import com.example.notesapp.database.NotesDatabase
+import com.example.notesapp.data.database.NotesDatabase
 import com.example.notesapp.databinding.ActivityMainBinding
-import com.example.notesapp.repositories.NoteRepository
+import com.example.notesapp.data.repositories.NoteRepository
 import com.example.notesapp.viewmodel.NotesViewModel
 import com.example.notesapp.viewmodel.providerfactory.NotesViewModelProviderFactory
 

@@ -1,7 +1,7 @@
-package com.example.notesapp.repositories
+package com.example.notesapp.data.repositories
 
-import com.example.notesapp.data.Note
-import com.example.notesapp.database.NotesDatabase
+import com.example.notesapp.data.model.Note
+import com.example.notesapp.data.database.NotesDatabase
 
 class NoteRepository(
     notesDatabase: NotesDatabase
@@ -14,6 +14,8 @@ class NoteRepository(
     suspend fun deleteNote(note: Note) = notesDao.deleteNote(note)
 
     fun getAllNotes() = notesDao.getAllNotes()
+
+    fun getSpecificLabeledNotes(noteLabel: String) = notesDao.getSpecificLabeledNotes(noteLabel)
 
     fun searchNotes(searchQuery: String) = notesDao.searchInNotesTitle(searchQuery)
 

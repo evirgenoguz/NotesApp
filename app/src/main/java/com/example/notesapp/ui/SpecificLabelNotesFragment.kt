@@ -6,23 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notesapp.R
-import com.example.notesapp.ui.adapters.LabeledNotesAdapter
+import com.example.notesapp.databinding.FragmentNotesListBinding
+import com.example.notesapp.databinding.FragmentSpecificLabelNotesBinding
 import com.example.notesapp.ui.adapters.NotesListAdapter
-import com.example.notesapp.databinding.FragmentLabeledNotesBinding
 import com.example.notesapp.viewmodel.NotesViewModel
-import kotlinx.coroutines.flow.collect
 
 
-class LabeledNotesFragment : Fragment() {
+class SpecificLabelNotesFragment : Fragment() {
 
-    private var _binding: FragmentLabeledNotesBinding? = null
+    private var _binding: FragmentSpecificLabelNotesBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var labeledNotesAdapter: LabeledNotesAdapter
+    private lateinit var notesListAdapter: NotesListAdapter
     private lateinit var viewModel: NotesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +32,8 @@ class LabeledNotesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentLabeledNotesBinding.inflate(inflater, container, false)
+        _binding = FragmentSpecificLabelNotesBinding.inflate(layoutInflater, container, false)
         return binding.root
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,34 +42,19 @@ class LabeledNotesFragment : Fragment() {
         setupRecyclerView()
 
         lifecycleScope.launchWhenStarted {
-            viewModel.notesLabels.collect{ labels ->
-                labeledNotesAdapter.differ.submitList(labels)
+            viewModel.specificLabeledNotes.collect { specificLabeledNotes ->
+                notesListAdapter.differ.submitList(specificLabeledNotes)
             }
         }
 
-        clickedFabAddNote()
 
-        labeledNotesAdapter.onClick = { label ->
-            viewModel.label = label
-            view.findNavController().navigate(R.id.action_labeledNotesFragment_to_specificLabelNotesFragment)
-        }
-
-
-    }
-
-
-
-    private fun clickedFabAddNote() {
-        binding.fabAddNote.setOnClickListener {
-            findNavController().navigate(R.id.action_labeledNotesFragment_to_noteFragment)
-        }
     }
 
     private fun setupRecyclerView() {
-        labeledNotesAdapter = LabeledNotesAdapter()
-        binding.rvLabels.apply {
+        notesListAdapter = NotesListAdapter()
+        binding.rvNotes.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = labeledNotesAdapter
+            adapter = notesListAdapter
         }
     }
 
@@ -84,5 +62,6 @@ class LabeledNotesFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 
 }

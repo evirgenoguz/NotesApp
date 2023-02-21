@@ -1,12 +1,11 @@
-package com.example.notesapp.database
+package com.example.notesapp.data.database
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
-import com.example.notesapp.data.Note
+import com.example.notesapp.data.model.Note
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -30,5 +29,10 @@ interface NoteDao {
 
     @Query("SELECT noteLabel FROM notes WHERE noteLabel IS NOT NULL")
     fun getNotesLabels(): Flow<List<String>>
+
+    @Query("SELECT * FROM notes WHERE noteLabel = :noteLabel")
+    fun getSpecificLabeledNotes(noteLabel: String): Flow<List<Note>>
+
+
 
 }
