@@ -73,16 +73,7 @@ class NotesListFragment : Fragment() {
         }
 
 
-        viewModel.label?.let {
-            Log.d("selam2", it)
-            viewModel.getSpecificLabeledNotes(it)
-            lifecycleScope.launchWhenStarted {
-                viewModel.specificLabeledNotes.collect { specificLabeledNotes ->
-                    notesListAdapter.differ.submitList(specificLabeledNotes)
-                }
-            }
-            viewModel.label = null
-        }
+
 
 
 

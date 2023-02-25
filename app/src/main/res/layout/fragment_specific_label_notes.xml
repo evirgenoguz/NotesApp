@@ -6,15 +6,15 @@
     android:layout_height="match_parent">
 
 
-    <EditText
-        android:id="@+id/edSearch"
+    <TextView
+        android:id="@+id/tvLabel"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="10dp"
-        android:background="@drawable/search_box_background"
-        android:drawableLeft="@drawable/ic_search"
+        android:drawableStart="@drawable/ic_label"
         android:drawableTint="@color/green"
-        android:hint="   Search..."
+        android:hint="   Label"
+        android:textSize="32sp"
         android:paddingStart="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edSearch"/>
+        app:layout_constraintTop_toBottomOf="@id/tvLabel"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddNote"

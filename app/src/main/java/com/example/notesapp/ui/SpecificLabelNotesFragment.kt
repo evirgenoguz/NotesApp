@@ -1,6 +1,8 @@
 package com.example.notesapp.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +47,18 @@ class SpecificLabelNotesFragment : Fragment() {
             viewModel.specificLabeledNotes.collect { specificLabeledNotes ->
                 notesListAdapter.differ.submitList(specificLabeledNotes)
             }
+        }
+
+        viewModel.label?.let {
+            Log.d("selam2", it)
+            viewModel.getSpecificLabeledNotes(it)
+            lifecycleScope.launchWhenStarted {
+                viewModel.specificLabeledNotes.collect { specificLabeledNotes ->
+                    notesListAdapter.differ.submitList(specificLabeledNotes)
+                }
+            }
+            binding.tvLabel.text = "\t" + it
+            viewModel.label = null
         }
 
 
