@@ -1,5 +1,6 @@
 # NotesApp
 
+You can reach that app with this link -> [Notes App](https://play.google.com/store/apps/details?id=com.evirgenoguz.notesapp)
 In this app you can create notes and we use room database for store notes.
 
 ## Used Tech
