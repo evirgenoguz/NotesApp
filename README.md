@@ -15,7 +15,9 @@ In this app you can create notes and we use room database for store notes.
 
  ### In this main page you can see your all notes and search notes with note's title.
  Also if you click plus float action button that app navigate you to the our second activity you can see below first picture.
- ![MainPage](https://user-images.githubusercontent.com/59138609/212172664-30721bb5-78c3-4fe3-8e4e-5a6e41d3ce6b.png)
+ 
+![MainPage](https://user-images.githubusercontent.com/59138609/212172664-30721bb5-78c3-4fe3-8e4e-5a6e41d3ce6b.png)
 
 ### In this second screen you can create your note with note title and note body and then you need click float action button
+
 ![CreateNoteScreen](https://user-images.githubusercontent.com/59138609/212173654-92eba014-620b-4baf-abff-b70a921538bb.png)
